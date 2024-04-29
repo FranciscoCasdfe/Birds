@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="en">
+    <head>
+        <title>BirdGa.me - Simple Boardgames</title>
+        <meta name="description" content="Multiplayer boardgames online.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+        <script>window.version='{{version}}';</script>
+        <script src="static/bundle.js?v={{version}}"></script>
+
+        <link rel="preload" href="static/fonts/Lora/Lora-Regular.ttf" as="font" crossorigin>
+        <link rel="stylesheet" href="static/index.css?v={{version}}">
+    </head>
+    <body>
+        <canvas id="display" tabindex='0'></canvas>
+
+        <div id="overlay">
+            <div id="overlay-collapse">-</div>
+            <p><b>Share this link:</b></p>
+            <div id="link-panel">
+                <a id="game-link" href="#"></a>
+                <!-- <div id="link-divider"></div>
+                <button><img src="static/qr-code.svg" class="icon" draggable="false"></img></button> -->
+            </div>
+            <div id="control-panel" data-hidden>
+                <hr>
+                <div id="choose-game" data-host-only data-hidden>
+                    <label for="games">Game:</label>
+                    <select name="games" id="games"></select>
+                </div>
+                <form id="add-pawn" autocomplete="off">
+                    <datalist id="pawn-list"></datalist>
+                    <input placeholder="Search for a piece..." list="pawn-list" name="pawn"></input>
+                    <button>Spawn</button>
+                </form>
+            </div>
+            <div id="controls">
+                <hr>
+                <details open>
+                    <summary><b>Controls</b></summary>
+                    <div id="instructions">
+                        <p><kbd><img src="static/left-click.svg" class="icon" draggable="false"></img> + drag</kbd> to look</p>
+                        <p>
+                            <kbd>⇧ + <img src="static/left-click.svg" class="icon" draggable="false"></img> + drag</kbd>, 
+                            <kbd><img src="static/right-click.svg" class="icon" draggable="false"></img> + drag</kbd>, 
+                            <kbd>WASD</kbd> to pan
+                        </p>
+                        <fieldset>
+                            <legend>
+                                <p><kbd><img src="static/left-click.svg" class="icon" draggable="false"></img> + drag</kbd> to move pieces:</p>
+                            </legend>
+                            <p><kbd><img src="static/right-click.svg" class="icon" draggable="false"></img></kbd> for more options</p>
+                            <p><kbd>F</kbd> to flip, and <kbd>Q/E</kbd> to rotate</p>
+                            <p><kbd>T</kbd> to take from a bag/deck</p>
+                            <p><kbd>G</kbd> to add a card to your hand</p>
+                        </fieldset>
+                    </div>
+                </details>
+            </div>
+            <div>
+                <details>
+                    <summary><b>Settings</b></summary>
+                    <form id="settings">
+                        <fieldset disabled>
+                            <div>
+                                <input type="checkbox" value="true" name="spawnPermission" id="spawnPermission">
+                                <label for="spawnPermission">Allow users to spawn pieces</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" value="true" name="showCardCounts" id="showCardCounts">
+                                <label for="showCardCounts">Show card counts</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" value="true" name="hideChat" id="hideChat">
+                                <label for="hideChat">Hide chat</label>
+                            </div>
+                        </fieldset>
+                    </form>
+                </details>
+            </div>
+            <hr>
+            <h2>Players</h2>
+            <div id="player-entries" data-hide-card-counts></div>
+        </div>
+
+        <bird-chat></bird-chat>
+        <bird-hand></bird-hand>
+        <bird-tooltip></bird-tooltip>
+        <bird-context-menu></bird-context-menu>
+
+        <a href="https://github.com/TesseractCat/bg3d" target="_blank">
+            <img id="icon" src="static/small_icon.png" alt=""></img>
+        </a>
+        <div id="shade">
+            <h1>CONNECTION LOST</h1>
+        </div>
+    </body>
+</html>
